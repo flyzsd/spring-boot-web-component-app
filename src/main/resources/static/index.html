@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spring Web</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.cyan-blue.min.css" />
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/web/css/style.css">
     <script type="module" src="/web/js/index.m.js"></script>
     <script type="module" src="/web/components/custom-square.m.js"></script>
@@ -13,10 +17,10 @@
 <div>
     <h1>web-component life cycle callbacks test with custom-square</h1>
     <div>
-        <button id="btn-add">Add custom-square to DOM</button>
-        <button id="btn-update-attribute" disabled>Update attributes</button>
-        <button id="btn-update-property" disabled>Update properties</button>
-        <button id="btn-remove" disabled>Remove custom-square from DOM</button>
+        <button id="btn-add" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Add custom-square to DOM</button>
+        <button id="btn-update-attribute" disabled class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Update attributes</button>
+        <button id="btn-update-property" disabled class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Update properties</button>
+        <button id="btn-remove" disabled class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Remove custom-square from DOM</button>
     </div>
 </div>
 

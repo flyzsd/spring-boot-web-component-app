@@ -49,4 +49,8 @@ class CustomDragdrop extends HTMLElement {
     }
 }
 
+window.customElements.whenDefined('custom-dragdrop').then(() => {
+    console.log('custom-dragdrop defined');
+});
+
 customElements.define('custom-dragdrop', CustomDragdrop);
