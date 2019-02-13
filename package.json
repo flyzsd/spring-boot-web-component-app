@@ -1,0 +1,23 @@
+{
+  "name": "spring-boot-web-component-app",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "lint": "eslint src/main/webapp/**/*.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flyzsd/spring-boot-web-component-app.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/flyzsd/spring-boot-web-component-app/issues"
+  },
+  "homepage": "https://github.com/flyzsd/spring-boot-web-component-app#readme",
+  "devDependencies": {
+    "eslint": "^5.13.0"
+  }
+}
