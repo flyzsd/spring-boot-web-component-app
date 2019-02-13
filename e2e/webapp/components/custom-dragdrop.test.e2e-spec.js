@@ -9,7 +9,19 @@ describe('First test suite with puppeteer', function () {
     let page;
 
     before(async function () {
-        browser = await puppeteer.launch({"headless": false});
+        browser = await puppeteer.launch({
+            // headless: false,
+            executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+            slowMo: 100,
+            defaultViewport: {
+                width: 1024,
+                height: 768
+            },
+            args: [
+                '--no-sandbox',
+            ],
+            userDataDir: 'temp/chrome-data'
+        });
     });
 
     after(async function () {
@@ -24,7 +36,7 @@ describe('First test suite with puppeteer', function () {
         await page.close();
     });
 
-    it('should load google.com', async function() {
+    it('should load google.com', async function () {
         await page.goto('https://www.google.com/');
         const title = await page.title();
         expect(title).to.be.a('string');
@@ -49,7 +61,7 @@ describe('First test suite with puppeteer', function () {
             // console.log('nested afterEach');
         });
 
-        it('should load google.com.sg', async function() {
+        it('should load google.com.sg', async function () {
             await page.goto('https://www.google.com.sg');
             const title = await page.title();
             expect(title).to.be.a('string');
