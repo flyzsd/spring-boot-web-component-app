@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring Web</title>
+    <base href="/web/">
+    <link rel="stylesheet" href="webjars/material-design-lite/material.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="module" src="js/index.m.js"></script>
+    <script type="module" src="components/custom-square.m.js"></script>
+</head>
+<body>
+<div>
+    <h1>web-component life cycle callbacks test with custom-square</h1>
+    <div>
+        <button id="btn-add" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Add custom-square to DOM</button>
+        <button id="btn-update-attribute" disabled class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Update attributes</button>
+        <button id="btn-update-property" disabled class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Update properties</button>
+        <button id="btn-remove" disabled class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Remove custom-square from DOM</button>
+    </div>
+</div>
+
+<div>
+    <span>Demo of attr() function in CSS</span>
+    <span data-tooltip="A simple explanation">Word</span>
+</div>
+<script type="text/javascript" src="webjars/material-design-lite/material.min.js"></script>
+<script type="text/javascript" src="webjars/rxjs/bundles/rxjs.umd.min.js"></script>
+</body>
+</html>
