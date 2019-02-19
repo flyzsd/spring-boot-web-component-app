@@ -1,3 +1,4 @@
-const rxjs = {...window.rxjs};
+const rxjs = window.rxjs;
+const Mustache = window.Mustache;
 
-export { rxjs };
+export { rxjs, Mustache};

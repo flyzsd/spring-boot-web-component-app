@@ -3,9 +3,12 @@
 // const {tap, map, filter, switchMap, catchError} = window.rxjs.operators;
 // const {ajax} = window.rxjs.ajax;
 
-import {rxjs} from "./rxjs.js";
+import {rxjs, Mustache} from "./rxjs.js";
 const {Observable, Subject, ReplaySubject, from, of, range, fromEvent} = rxjs;
 const {tap, map, filter, switchMap, catchError} = rxjs.operators;
+
+const template = Mustache.render(`<div></div>`, {});
+console.log(`template = ${template}`);
 
 const dog = {
     run: (name: string): string => {
