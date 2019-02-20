@@ -5,7 +5,6 @@ const { Observable, Subject, ReplaySubject, from, of, range, fromEvent } = rxjs;
 const { tap, map, filter, switchMap, catchError } = rxjs.operators;
 const { ajax } = rxjs.ajax;
 
-// import {zoo} from './lib2.ts';
 import { zoo } from './hello2.js';
 
 console.dir(rxjs);

@@ -24,5 +24,11 @@
 /.nb-gradle/
 /build/
 
-node_modules/
-temp/
+### NPM ###
+/node_modules/
+
+### JS ###
+/src/main/webapp/js/**/*.js
+
+### Others ###
+/temp/

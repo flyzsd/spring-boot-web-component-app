@@ -4,12 +4,12 @@
   "description": "spring boot with web app",
   "private": true,
   "scripts": {
-    "clean": "rm -rf temp",
     "lint": "eslint src/main/webapp/**/*.m.js",
     "test": "mocha --timeout 10000 --check-leaks --require @babel/register src/main/webapp/**/*.spec.js",
     "e2e": "mocha --timeout 10000 --check-leaks e2e/**/*.e2e-spec.js",
     "babel": "rm -rf temp/webapp && babel src/main/webapp --out-dir temp/webapp",
-    "build": "tsc",
+    "clean": "find src/main/webapp/js -type f -iname '*.ts' -delete",
+    "build": "tsc && npm run clean",
     "tsc": "tsc -w"
   },
   "repository": {
