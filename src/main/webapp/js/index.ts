@@ -1,10 +1,12 @@
 //https://github.com/ReactiveX/rxjs/blob/master/src/internal/observable/dom/AjaxObservable.ts
-const {Observable, Subject, ReplaySubject, from, of, range, fromEvent} = rxjs;
-const {tap, map, filter, switchMap, catchError} = rxjs.operators;
-const {ajax} = rxjs.ajax;
+import { rxjs } from "../rxjs/rxjs.js";
 
-// import {zoo} from './lib2.m.js';
-import {zoo} from './hello2.js';
+const { Observable, Subject, ReplaySubject, from, of, range, fromEvent } = rxjs;
+const { tap, map, filter, switchMap, catchError } = rxjs.operators;
+const { ajax } = rxjs.ajax;
+
+// import {zoo} from './lib2.ts';
+import { zoo } from './hello2.js';
 
 console.dir(rxjs);
 

@@ -1,26 +1,33 @@
 "use strict";
+
 // const chai = require('chai');
 // const expect = chai.expect;
 import { expect } from 'chai';
-import { zoo } from './hello2.js';
+import { zoo } from './lib2.js';
+
 describe('zoo', () => {
     it('should show', async () => {
         zoo.show();
     });
 });
+
 describe('js array', () => {
     before(async () => {
         console.log("before");
     });
+
     after(async () => {
         console.log("after");
     });
+
     beforeEach(async () => {
         console.log("beforeEach");
     });
+
     afterEach(async () => {
         console.log("afterEach");
     });
+
     describe('filter duplicates in array', () => {
         it('using filter function', async () => {
             const array = [1, 2, 3, 4, 4, 3, 5];
@@ -28,6 +35,7 @@ describe('js array', () => {
             console.log(filteredArray);
             expect(filteredArray).to.have.length(5);
         });
+
         it('using Set', async () => {
             const array = [1, 2, 3, 4, 4, 3, 5];
             const filteredArray = [...new Set(array)];
@@ -35,6 +43,7 @@ describe('js array', () => {
             expect(filteredArray).to.have.length(5);
         });
     });
+
     describe('convert array to Map', () => {
         it('using reduce function', async () => {
             const array = [
@@ -49,4 +58,5 @@ describe('js array', () => {
             expect(resultMap.size).to.equal(5);
         });
     });
+
 });

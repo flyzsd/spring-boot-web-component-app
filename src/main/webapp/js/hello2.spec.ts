@@ -47,13 +47,13 @@ describe('js array', () => {
     describe('convert array to Map', () => {
         it('using reduce function', async () => {
             const array = [
-                {name: "index", type: "uint256"},
-                {name: "uuid", type: "bytes32"},
-                {name: "owner", type: "address"},
-                {name: "passenger", type: "address"},
-                {name: "price", type: "uint256"}
+                { name: "index", type: "uint256" },
+                { name: "uuid", type: "bytes32" },
+                { name: "owner", type: "address" },
+                { name: "passenger", type: "address" },
+                { name: "price", type: "uint256" }
             ];
-            const resultMap = array.reduce((map, {name, type}) => map.set(name, type), new Map());
+            const resultMap = array.reduce((map, { name, type }) => map.set(name, type), new Map());
             console.log(resultMap);
             expect(resultMap.size).to.equal(5);
         });
