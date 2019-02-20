@@ -1,5 +1,4 @@
 //https://github.com/ReactiveX/rxjs/blob/master/src/internal/observable/dom/AjaxObservable.ts
-import { rxjs } from "../rxjs/rxjs.js";
 
 const { Observable, Subject, ReplaySubject, from, of, range, fromEvent } = rxjs;
 const { tap, map, filter, switchMap, catchError } = rxjs.operators;

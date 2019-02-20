@@ -3,8 +3,6 @@
 // const {tap, map, filter, switchMap, catchError} = window.rxjs.operators;
 // const {ajax} = window.rxjs.ajax;
 
-import { rxjs } from "../rxjs/rxjs.js";
-
 const { Observable, Subject, ReplaySubject, from, of, range, fromEvent } = rxjs;
 const { tap, map, filter, switchMap, catchError } = rxjs.operators;
 
