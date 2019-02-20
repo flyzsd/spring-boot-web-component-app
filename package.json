@@ -9,6 +9,7 @@
     "test": "mocha --timeout 10000 --check-leaks --require @babel/register src/main/webapp/**/*.spec.js",
     "e2e": "mocha --timeout 10000 --check-leaks e2e/**/*.e2e-spec.js",
     "babel": "rm -rf temp/webapp && babel src/main/webapp --out-dir temp/webapp",
+    "build": "tsc",
     "tsc": "tsc -w"
   },
   "repository": {
@@ -33,6 +34,7 @@
     "eslint": "^5.14.1",
     "mocha": "^6.0.0",
     "puppeteer": "^1.12.2",
+    "rxjs": "^6.4.0",
     "typescript": "^3.3.3"
   }
 }
