@@ -1,4 +1,4 @@
-//https://github.com/ReactiveX/rxjs/blob/master/src/internal/observable/dom/AjaxObservable.ts
+// https://github.com/ReactiveX/rxjs/blob/master/src/internal/observable/dom/AjaxObservable.ts
 // const {Observable, Subject, ReplaySubject, from, of, range, fromEvent} = window.rxjs;
 // const {tap, map, filter, switchMap, catchError} = window.rxjs.operators;
 // const {ajax} = window.rxjs.ajax;
@@ -12,7 +12,7 @@ console.log(`template = ${template}`);
 const dog = {
     run: (name: string): string => {
         const array = [1, 2, 3];
-        for (let i of array) {
+        for (const i of array) {
             console.log(`num = ${i}`);
         }
         console.log(`dog run ${name}`);

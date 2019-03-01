@@ -1,4 +1,4 @@
-import * as Mustache from "Mustache";
+import * as Mustache from 'Mustache';
 
 declare global {
     const Mustache: typeof Mustache;

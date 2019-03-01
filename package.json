@@ -4,12 +4,12 @@
   "description": "spring boot with web app",
   "private": true,
   "scripts": {
-    "lint": "eslint src/main/webapp/**/*.m.js",
+    "lint": "tslint src/main/webapp/**/*.ts",
+    "lint:fix": "npm run lint -- --fix",
     "test": "mocha --timeout 10000 --check-leaks --require @babel/register src/main/webapp/**/*.spec.js",
     "e2e": "mocha --timeout 10000 --check-leaks e2e/**/*.e2e-spec.js",
-    "babel": "rm -rf temp/webapp && babel src/main/webapp --out-dir temp/webapp",
-    "clean": "find src/main/webapp/js -type f -iname '*.ts' -delete",
-    "build": "tsc && npm run clean",
+    "clean:ts": "del src/main/webapp/**/*.ts",
+    "build": "npm run lint && tsc && npm run test && npm run clean:ts",
     "tsc": "tsc -w"
   },
   "repository": {
@@ -23,18 +23,17 @@
   },
   "homepage": "https://github.com/flyzsd/spring-boot-web-component-app#readme",
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.3.3",
-    "@babel/preset-env": "^7.3.1",
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
     "@babel/register": "^7.0.0",
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.6",
     "@types/mustache": "^0.8.32",
     "chai": "^4.2.0",
-    "eslint": "^5.14.1",
     "mocha": "^6.0.0",
     "puppeteer": "^1.12.2",
     "rxjs": "^6.4.0",
+    "tslint": "^5.13.1",
     "typescript": "^3.3.3"
   }
 }

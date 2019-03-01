@@ -1,4 +1,4 @@
-import { dog } from "./lib1.js";
+import { dog } from './lib1.js';
 
 const zoo = {
     show: () => {

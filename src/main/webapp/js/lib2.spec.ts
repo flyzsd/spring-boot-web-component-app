@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 // const chai = require('chai');
 // const expect = chai.expect;
@@ -13,19 +13,19 @@ describe('zoo', () => {
 
 describe('js array', () => {
     before(async () => {
-        console.log("before");
+        console.log('before');
     });
 
     after(async () => {
-        console.log("after");
+        console.log('after');
     });
 
     beforeEach(async () => {
-        console.log("beforeEach");
+        console.log('beforeEach');
     });
 
     afterEach(async () => {
-        console.log("afterEach");
+        console.log('afterEach');
     });
 
     describe('filter duplicates in array', () => {
@@ -47,11 +47,11 @@ describe('js array', () => {
     describe('convert array to Map', () => {
         it('using reduce function', async () => {
             const array = [
-                { name: "index", type: "uint256" },
-                { name: "uuid", type: "bytes32" },
-                { name: "owner", type: "address" },
-                { name: "passenger", type: "address" },
-                { name: "price", type: "uint256" }
+                { name: 'index', type: 'uint256' },
+                { name: 'uuid', type: 'bytes32' },
+                { name: 'owner', type: 'address' },
+                { name: 'passenger', type: 'address' },
+                { name: 'price', type: 'uint256' }
             ];
             const resultMap = array.reduce((map, { name, type }) => map.set(name, type), new Map());
             console.log(resultMap);
