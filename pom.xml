@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.shudong.boot</groupId>
-    <artifactId>webapp</artifactId>
+    <artifactId>spring-web</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>webapp</name>
+    <name>spring-web</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>

@@ -14,6 +14,6 @@ applications:
       - jdbc/mysql/testdb
       - my-cf-scheduler
     routes:
-      - route: spring-web.cfapps.io
+      - route: shudong.cfapps.io
     health-check-type: http
-    health-check-http-endpoint: /spring-web/actuator/health
+    health-check-http-endpoint: /actuator/health
