@@ -1,0 +1,19 @@
+---
+# this is a comment
+applications:
+  - name: spring-web
+    memory: 1024M
+    disk_quota: 1G
+    timeout: 180
+    instances: 2
+    buildpack: java_buildpack
+    env:
+      TZ: Asia/Singapore
+      JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+ } }'
+    services:
+      - jdbc/mysql/testdb
+      - my-cf-scheduler
+    routes:
+      - route: spring-web.cfapps.io
+    health-check-type: http
+    health-check-http-endpoint: /spring-web/actuator/health
