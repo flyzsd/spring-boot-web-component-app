@@ -1,5 +1,7 @@
 console.log('+init custom-square');
 
+import { html, render } from '/webjars/lit-html/lit-html.js';
+
 const template = document.createElement('template');
 template.innerHTML = `
     <style>
@@ -20,8 +22,9 @@ template.innerHTML = `
         }
     </style>
     <link rel="stylesheet" type="text/css" href="components/custom-square.css">
-    <div><p>hello world!!</p></div>
+    <div id="container"></div>
 `;
+const helloTemplate = (name) => html`<p>Hello ${name}</p>`;
 
 // The order in which the lifecycle methods are executed is:
 // constructor -> attributeChangedCallback -> connectedCallback
@@ -131,6 +134,8 @@ class CustomSquare extends HTMLElement {
         element.style.width = `${this.size}px`;
         element.style.height = `${this.size}px`;
         element.style.backgroundColor = this.color;
+        render(helloTemplate('World'), element);
+        render(helloTemplate('Shudong'), element);
     }
 
     //static method
