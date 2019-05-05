@@ -1,121 +1,157 @@
 console.log('+init custom-square');
 
-(() => {
-    console.log('inside custom-square function');
-
-    const template = document.createElement('template');
-    template.innerHTML = `
+const template = document.createElement('template');
+template.innerHTML = `
     <style>
         :host {
             all: initial;       /* 1st rule so subsequent properties are reset. */
             display: block;     /* by default, custom elements are display: inline */
             contain: content;   /* CSS containment */
+            color: green;
+            --background-color: purple;
         }
 
         :host([hidden]) { 
             display: none 
         }
+        
+        p {
+            background-color: var(--background-color, blue);
+        }
     </style>
-    <link rel="stylesheet" type="text/css" href="/web/components/custom-square.css">
-    <div></div>
+    <link rel="stylesheet" type="text/css" href="components/custom-square.css">
+    <div><p>hello world!!</p></div>
 `;
 
-    class CustomSquare extends HTMLElement {
-        constructor() {
-            console.log('constructor');
-            super();
-            // Attach a shadow root to the element.
-            this.attachShadow({mode: 'open'}).appendChild(template.content.cloneNode(true));
-        }
+// The order in which the lifecycle methods are executed is:
+// constructor -> attributeChangedCallback -> connectedCallback
+// you should defer setup of your component to connectedCallback as much as possible
+class CustomSquare extends HTMLElement {
+    constructor() {
+        console.log('constructor');
+        super();
+        // Attach a shadow root to the element.
+        const shadowRoot = this.attachShadow({ mode: 'open' });
+        // shadowRoot.innerHTML = ``;
+        shadowRoot.appendChild(template.content.cloneNode(true));
+    }
 
-        // Called every time the element is inserted into the DOM. Useful for running setup code, such as fetching resources or rendering. Generally, you should try to delay work until this time.
-        connectedCallback() {
-            console.log('connectedCallback');
-            this.render();
-        }
+    // Called every time the element is inserted into the DOM. Useful for running setup code, such as fetching resources or rendering. Generally, you should try to delay work until this time.
+    connectedCallback() {
+        console.log('connectedCallback');
+        this.render();
+        this.dispatchEvent(new CustomEvent('custom', {
+            detail: { message: 'connectedCallback' }
+        }));
+    }
 
-        // Called every time the element is removed from the DOM. Useful for running clean up code.
-        disconnectedCallback() {
-            console.log('disconnectedCallback');
-        }
+    // Called every time the element is removed from the DOM. Useful for running clean up code.
+    disconnectedCallback() {
+        console.log('disconnectedCallback');
+        this.dispatchEvent(new CustomEvent('custom', {
+            detail: { message: 'disconnectedCallback' }
+        }));
+    }
 
-        static get observedAttributes() {
-            return ['size', 'color'];
-        }
+    static get observedAttributes() {
+        return ['size', 'color', 'disabled'];
+    }
 
-        // Called when an observed attribute has been added, removed, updated, or replaced. Also called for initial values when an element is created by the parser, or upgraded. Note: only attributes listed in the observedAttributes property will receive this callback.
-        // Only called for the disabled and open attributes due to observedAttributes
-        attributeChangedCallback(name, oldValue, newValue) {
-            console.log(`attributeChangedCallback, name = ${name}, oldValue = ${oldValue}, newValue = ${newValue}`);
-            this.render();
-        }
-
-        // A getter/setter for an size property.
-        get size() {
-            if (this.hasAttribute('size')) {
-                return +this.getAttribute('size');
-            } else {
-                return 100;
-            }
-        }
-
-        set size(value) {
-            console.log(`set size, value = ${value}`);
-            // Reflect the value of the size property as an HTML attribute.
-            if (Number.isNaN(value)) {
-                this.removeAttribute('size');
-            } else {
-                this.setAttribute('size', value);
-            }
-        }
-
-        // A getter/setter for a color property.
-        get color() {
-            if (this.hasAttribute('color')) {
-                return this.getAttribute('color');
-            } else {
-                return 'red';
-            }
-        }
-
-        set color(value) {
-            // Reflect the value of the color property as an HTML attribute.
-            if (value) {
-                this.setAttribute('color', value);
-            } else {
-                this.removeAttribute('color');
-            }
-        }
-
-        render() {
-            console.log(`render size = ${this.size}, color = ${this.color}`);
+    // Called when an observed attribute has been added, removed, updated, or replaced.
+    // Also called for initial values when an element is created by the parser, or upgraded.
+    // Note: only attributes listed in the observedAttributes property will receive this callback.
+    // Only called for the disabled and open attributes due to observedAttributes
+    attributeChangedCallback(name, oldValue, newValue) {
+        console.log(`attributeChangedCallback, name = ${name}, oldValue = ${oldValue}, newValue = ${newValue}`);
+        if (name === 'disabled') {
             const element = this.shadowRoot.querySelector('div');
-            element.style.width = `${this.size}px`;
-            element.style.height = `${this.size}px`;
-            element.style.backgroundColor = this.color;
+            if (this.disabled) {
+                element.classList.add('disabled');
+            } else {
+                element.classList.remove('disabled');
+            }
         }
+        this.render();
+    }
 
-        //static method
-        static hello() {
-            console.log(`hello`);
-        }
-
-        //static getter method
-        static get name() {
-            return `name`;
+    // A getter/setter for an size property.
+    get size() {
+        if (this.hasAttribute('size')) {
+            return +this.getAttribute('size');
+        } else {
+            return 100;
         }
     }
 
-    //static class fields
-    CustomSquare.count = 0;
+    set size(value) {
+        console.log(`set size, value = ${value}`);
+        // Reflect the value of the size property as an HTML attribute.
+        if (Number.isNaN(value)) {
+            this.removeAttribute('size');
+        } else {
+            this.setAttribute('size', value);
+        }
+    }
 
-    window.customElements.whenDefined('custom-square').then(() => {
-        console.log('custom-square defined');
-    });
+    // A getter/setter for a color property.
+    get color() {
+        if (this.hasAttribute('color')) {
+            return this.getAttribute('color');
+        } else {
+            return 'red';
+        }
+    }
 
-    window.customElements.define('custom-square', CustomSquare);
-})();
+    set color(value) {
+        console.log(`set color, value = ${value}`);
+        // Reflect the value of the color property as an HTML attribute.
+        if (value) {
+            this.setAttribute('color', value);
+        } else {
+            this.removeAttribute('color');
+        }
+    }
 
+    set disabled(value) {
+        console.log(`set disabled, value = ${value}`);
+        if (value) {
+            this.setAttribute('disabled', '');
+        } else {
+            this.removeAttribute('disabled');
+        }
+    }
+
+    get disabled() {
+        return this.hasAttribute('disabled');
+    }
+
+    render() {
+        console.log(`render size = ${this.size}, color = ${this.color}`);
+        const element = this.shadowRoot.querySelector('div');
+        element.style.width = `${this.size}px`;
+        element.style.height = `${this.size}px`;
+        element.style.backgroundColor = this.color;
+    }
+
+    //static method
+    static hello() {
+        console.log(`hello`);
+    }
+
+    //static getter method
+    static get name() {
+        return `name`;
+    }
+}
+
+//static class fields
+CustomSquare.count = 0;
+
+window.customElements.whenDefined('custom-square').then(() => {
+    console.log('custom-square defined');
+});
+
+window.customElements.define('custom-square', CustomSquare);
 
 const ready = () => {
     console.log('DOM is ready');
@@ -130,6 +166,9 @@ const ready = () => {
         if (!square) {
             square = document.createElement('custom-square');
             square.color = 'blue';
+            square.addEventListener('custom', (e) => {
+                console.log('message from event:', e.detail.message);
+            });
         }
         document.body.appendChild(square);
 
