@@ -10,7 +10,6 @@ template.innerHTML = `
             display: block;     /* by default, custom elements are display: inline */
             contain: content;   /* CSS containment */
             color: green;
-            --background-color: purple;
         }
 
         :host([hidden]) { 

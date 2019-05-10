@@ -10,17 +10,17 @@ class MyCreditCard extends HTMLElement {
 
     connectedCallback() {
         console.log('connectedCallback');
-        render(this.render(), this.shadowRoot);
+        render(this.template, this.shadowRoot);
     }
 
-    render() {
+    get template() {
         return html`
       <link rel="stylesheet" type="text/css" href="components/credit-card.css">
       <div id="form-container">
 
         <div id="card-front">
           <div id="shadow"></div>
-          <div id="image-container" @click="${this.handleClickLogo.bind(this)}">
+          <div id="image-container" @click="${this.handleClickLogo}">
             <span id="amount"><strong>DBS</strong></span>
           </div>
       
