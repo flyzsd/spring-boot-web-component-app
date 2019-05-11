@@ -5,6 +5,8 @@ import { html, render } from '/webjars/lit-html/lit-html.js';
 const template = document.createElement('template');
 template.innerHTML = `
     <style>
+        @import url("components/custom-square.css");
+        
         :host {
             all: initial;       /* 1st rule so subsequent properties are reset. */
             display: block;     /* by default, custom elements are display: inline */
@@ -20,7 +22,7 @@ template.innerHTML = `
             background-color: var(--background-color, blue);
         }
     </style>
-    <link rel="stylesheet" type="text/css" href="components/custom-square.css">
+<!--    <link rel="stylesheet" type="text/css" href="components/custom-square.css">-->
     <div id="container"></div>
 `;
 const helloTemplate = (name) => html`<p>Hello ${name}</p>`;
