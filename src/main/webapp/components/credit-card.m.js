@@ -1,22 +1,45 @@
 import { html, render } from '/webjars/lit-html/lit-html.js';
+import { styleMap } from '/webjars/lit-html/directives/style-map.js';
+import { classMap } from '/webjars/lit-html/directives/class-map.js';
+import { cache } from '/webjars/lit-html/directives/cache.js';
+import { ifDefined } from '/webjars/lit-html/directives/if-defined.js';
+import { guard } from '/webjars/lit-html/directives/guard.js';
+import { repeat } from '/webjars/lit-html/directives/repeat.js';
+import { until } from '/webjars/lit-html/directives/until.js';
 
 class MyCreditCard extends HTMLElement {
 
     constructor() {
         super();
         const shadowRoot = this.attachShadow({ mode: 'open' });
-        this.handleClickLogo = this.handleClickLogo.bind(this);
+        // this.handleClickLogo = this.handleClickLogo.bind(this);
+        this._model = {
+            checked: true,
+            holder: 'SHUDONG'
+        };
     }
 
     connectedCallback() {
         console.log('connectedCallback');
-        render(this.template, this.shadowRoot);
+        this._render();
     }
 
-    get template() {
+    set data(data) {
+        this._model = data;
+    }
+
+    get data() {
+        return {};
+    }
+
+    _render() {
+        render(this._template, this.shadowRoot, { eventContext: this });
+    }
+
+    get _template() {
         return html`
       <link rel="stylesheet" type="text/css" href="components/credit-card.css">
-      <div id="form-container">
+      <div id="form-container" class=${classMap({ highlight: true, enabled: true, hidden: false })}>
 
         <div id="card-front">
           <div id="shadow"></div>
@@ -24,13 +47,14 @@ class MyCreditCard extends HTMLElement {
             <span id="amount"><strong>DBS</strong></span>
           </div>
       
-          <label for="card-number">
+          <label for="card-number" style=${styleMap({ color: 'white', backgroundColor: 'red' })}>
             Card Number
           </label>
-          <input type="text" id="card-number" placeholder="1234 5678 9101 1112" length="16">
+          <input type="text" id="card-number" placeholder="1234 5678 9101 1112" length="16" ?checked=${this._model.checked}>
           <div id="cardholder-container">
             <label for="card-holder">Card Holder</label>
-            <input type="text" id="card-holder" placeholder="e.g. Sergio Contreras" />
+            <input type="text" id="card-holder" placeholder="e.g. Sergio Contreras" 
+                value=${ifDefined(this._model.holder)} @change=${(e) => this._model.holder = e.target.value}/>
           </div>
 
           <div id="exp-container">

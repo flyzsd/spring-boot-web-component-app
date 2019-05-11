@@ -128,13 +128,16 @@ class CustomSquare extends HTMLElement {
     }
 
     render() {
-        console.log(`render size = ${this.size}, color = ${this.color}`);
-        const element = this.shadowRoot.querySelector('div');
-        element.style.width = `${this.size}px`;
-        element.style.height = `${this.size}px`;
-        element.style.backgroundColor = this.color;
-        render(helloTemplate('World'), element);
-        render(helloTemplate('Shudong'), element);
+        console.log(`render() isConnected = ${this.isConnected}`);
+        if(this.isConnected) {
+            console.log(`render size = ${this.size}, color = ${this.color}`);
+            const element = this.shadowRoot.querySelector('div');
+            element.style.width = `${this.size}px`;
+            element.style.height = `${this.size}px`;
+            element.style.backgroundColor = this.color;
+            render(helloTemplate('World'), element);
+            render(helloTemplate('Shudong'), element);
+        }
     }
 
     //static method
@@ -169,6 +172,7 @@ const ready = () => {
     document.querySelector('#btn-add').addEventListener('click', evt => {
         if (!square) {
             square = document.createElement('custom-square');
+            square.size = 200;
             square.color = 'blue';
             square.addEventListener('custom', (e) => {
                 console.log('message from event:', e.detail.message);
