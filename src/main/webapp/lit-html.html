@@ -11,12 +11,24 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="webjars/material-design-lite/material.min.css">
     <script defer type="text/javascript" src="webjars/material-design-lite/material.min.js"></script>
+    <script type="module">
+        const supportsCustomElementsV1 = 'customElements' in window;
+        const supportsShadowDOMV1 = !!HTMLElement.prototype.attachShadow;
+        console.log(`supportsCustomElementsV1 = ${supportsCustomElementsV1}`);
+        console.log(`supportsShadowDOMV1 = ${supportsShadowDOMV1}`);
+    </script>
     <style>
         @import url("css/style.css");
+
+        cool-heading:not(:defined) {
+            /* Pre-style, give layout, replicate app-drawer's eventual styles, etc. */
+            display: inline-block;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
     </style>
 </head>
 <body>
-//Inherited properties such as fonts and color do inherit through the shadow root when they are applied to a parent element.
 <cool-heading>
     <h1>Hello world!</h1>
 </cool-heading>

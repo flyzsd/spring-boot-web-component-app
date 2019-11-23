@@ -1,43 +1,31 @@
-import { html, render } from '/webjars/lit-html/lit-html.js';
-import { styleMap } from '/webjars/lit-html/directives/style-map.js';
-import { classMap } from '/webjars/lit-html/directives/class-map.js';
-import { cache } from '/webjars/lit-html/directives/cache.js';
-import { ifDefined } from '/webjars/lit-html/directives/if-defined.js';
-import { guard } from '/webjars/lit-html/directives/guard.js';
-import { repeat } from '/webjars/lit-html/directives/repeat.js';
-import { until } from '/webjars/lit-html/directives/until.js';
-
+// @ts-ignore
+import { html, render } from '../webjars/lit-html/lit-html.js';
+// @ts-ignore
+import { styleMap } from '../webjars/lit-html/directives/style-map.js';
+// @ts-ignore
+import { classMap } from '../webjars/lit-html/directives/class-map.js';
+// @ts-ignore
+import { ifDefined } from '../webjars/lit-html/directives/if-defined.js';
+const $ = (shadowRoot, selectors) => {
+    var _a;
+    return (_a = shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelector(selectors);
+};
 class MyCreditCard extends HTMLElement {
-
     constructor() {
         super();
-        const shadowRoot = this.attachShadow({ mode: 'open' });
-        // this.handleClickLogo = this.handleClickLogo.bind(this);
-        this._model = {
-            checked: true,
-            holder: 'SHUDONG'
-        };
+        this.attachShadow({ mode: 'open' });
+        this.dataset.checked = 'true';
+        this.dataset.holder = 'SHUDONG';
     }
-
     connectedCallback() {
         console.log('connectedCallback');
         this._render();
     }
-
-    set data(data) {
-        this._model = data;
-    }
-
-    get data() {
-        return {};
-    }
-
     _render() {
         render(this._template, this.shadowRoot, { eventContext: this });
     }
-
     get _template() {
-        return html`
+        return html `
       <link rel="stylesheet" type="text/css" href="components/credit-card.css">
       <div id="form-container" class=${classMap({ highlight: true, enabled: true, hidden: false })}>
 
@@ -50,11 +38,11 @@ class MyCreditCard extends HTMLElement {
           <label for="card-number" style=${styleMap({ color: 'white', backgroundColor: 'red' })}>
             Card Number
           </label>
-          <input type="text" id="card-number" placeholder="1234 5678 9101 1112" length="16" ?checked=${this._model.checked}>
+          <input type="text" id="card-number" placeholder="1234 5678 9101 1112" length="16" ?checked=${this.dataset.checked}>
           <div id="cardholder-container">
             <label for="card-holder">Card Holder</label>
             <input type="text" id="card-holder" placeholder="e.g. Sergio Contreras" 
-                value=${ifDefined(this._model.holder)} @change=${(e) => this._model.holder = e.target.value}/>
+                value=${ifDefined(this.dataset.holder)} @change=${(e) => this.dataset.holder = e.target.value}/>
           </div>
 
           <div id="exp-container">
@@ -117,26 +105,27 @@ class MyCreditCard extends HTMLElement {
       </div>
     `;
     }
-
     handleClickLogo(e) {
         console.dir(this);
     }
-
     handleClick(e) {
+        var _a, _b, _c, _d, _e;
         console.dir(this);
         let event = new CustomEvent('credit-card-details', {
             detail: {
                 bank: this.title,
-                cardNumber: this.shadowRoot.getElementById('card-number').value,
-                cardHolder: this.shadowRoot.getElementById('card-holder').value,
-                expirationMonth: this.shadowRoot.getElementById('card-month').value,
-                expirationYear: this.shadowRoot.getElementById('card-year').value,
-                cvc: this.shadowRoot.getElementById('card-cvc').value
-            }
+                cardNumber: (_a = $(this.shadowRoot, '#card-number')) === null || _a === void 0 ? void 0 : _a.value,
+                cardHolder: (_b = $(this.shadowRoot, '#card-holder')) === null || _b === void 0 ? void 0 : _b.value,
+                expirationMonth: (_c = $(this.shadowRoot, '#card-month')) === null || _c === void 0 ? void 0 : _c.value,
+                expirationYear: (_d = $(this.shadowRoot, '#card-year')) === null || _d === void 0 ? void 0 : _d.value,
+                cvc: (_e = $(this.shadowRoot, '#card-cvc')) === null || _e === void 0 ? void 0 : _e.value
+            },
+            composed: true,
+            bubbles: true
         });
         console.dir(event);
         this.dispatchEvent(event);
-    };
+    }
+    ;
 }
-
 window.customElements.define('my-credit-card', MyCreditCard);
