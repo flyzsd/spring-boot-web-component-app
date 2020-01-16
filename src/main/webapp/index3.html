@@ -13,10 +13,77 @@
     <script defer type="text/javascript" src="webjars/material-design-lite/material.min.js"></script>
     <script type="module" src="components/credit-card.js"></script>
     <style>
+        header {
+            position: fixed;
+            z-index: 10;
+            width: 100vw;
+            height: 50px;
+            background-color: #fafafb;
+            box-shadow: 0 1px 0 rgba(12,13,14,0.1), 0 1px 6px rgba(59,64,69,0.1);
+            border-top: 3px solid #F48024;
+            box-sizing: border-box;
+            transition: box-shadow cubic-bezier(.165, .84, .44, 1) .25s;
+        }
 
+        main {
+            position: relative;
+        }
+
+        button::before {
+            content: "♥";
+            color: red;
+        }
+
+        button::after {
+            content: "♥";
+            color: red;
+        }
     </style>
 </head>
 <body>
-<my-credit-card></my-credit-card>
+<header></header>
+<main>
+    <section>
+        <my-credit-card></my-credit-card>
+    </section>
+    <section>
+        <progress></progress>
+        <hr>
+        <label>Do you like peas?
+            <input type="checkbox" name="peas">
+        </label>
+        <div class="preference">
+            <label for="cheese">Do you like cheese?</label>
+            <input type="checkbox" name="cheese" id="cheese">
+        </div>
+        <label for="pet-select">Choose a pet:</label>
+
+        <select name="pets" id="pet-select">
+            <option value="">--Please choose an option--</option>
+            <option value="dog">Dog</option>
+            <option value="cat">Cat</option>
+            <option value="hamster">Hamster</option>
+            <option value="parrot">Parrot</option>
+            <option value="spider">Spider</option>
+            <option value="goldfish">Goldfish</option>
+        </select>
+
+        <button name="button"><strong>Click me</strong></button>
+    </section>
+</main>
+<footer></footer>
+
+
+<div>hello</div>
+<h5>this is a title</h5>
+<h5>this is a title</h5>
+<h5>this is a title</h5>
+<h5>this is a title</h5>
+<h5>this is a title</h5><h5>this is a title</h5>
+
+<h5>this is a title</h5>
+<h5>this is a title</h5>
+<h5>this is a title</h5>
+
 </body>
 </html>
