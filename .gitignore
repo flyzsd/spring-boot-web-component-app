@@ -29,6 +29,8 @@
 
 ### JS ###
 /src/main/webapp/js/**/*.js
+/src/main/webapp/components/**/*.js
+/src/main/webapp/lit-element/**/*.js
 
 ### Others ###
 /temp/

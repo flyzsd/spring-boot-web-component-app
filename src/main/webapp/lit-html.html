@@ -19,10 +19,11 @@
 
         import {html, render} from './webjars/lit-html/lit-html.js';
         const x = html`hello`;
-        console.log(x)
+        console.log(x);
 
         import './components/howto-checkbox.js';
     </script>
+    <script type="module" src="components/my-lit-element.js"></script>
     <style>
         @import url("css/style.css");
 
@@ -38,5 +39,7 @@
 <cool-heading>
     <h1>Hello world!</h1>
 </cool-heading>
+<div id="lit-html">
+</div>
 </body>
 </html>

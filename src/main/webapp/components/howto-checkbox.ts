@@ -56,7 +56,9 @@ ${guard([items], () => items.map(item => html`${item}`))}
 ${unsafeHTML(markup)}
 <div>${markup}</div>
 ${untilTemplate}
+<my-lit-element .foo=${person.name}></my-lit-element>
+<my-lit-element foo=${person.name}></my-lit-element>
 `;
 console.log(myTemplate);
 
-render(myTemplate('World', person), document.body);
+render(myTemplate('World', person), document.querySelector('#lit-html'));
