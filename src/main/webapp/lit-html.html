@@ -16,6 +16,12 @@
         const supportsShadowDOMV1 = !!HTMLElement.prototype.attachShadow;
         console.log(`supportsCustomElementsV1 = ${supportsCustomElementsV1}`);
         console.log(`supportsShadowDOMV1 = ${supportsShadowDOMV1}`);
+
+        import {html, render} from './webjars/lit-html/lit-html.js';
+        const x = html`hello`;
+        console.log(x)
+
+        import './components/howto-checkbox.js';
     </script>
     <style>
         @import url("css/style.css");
